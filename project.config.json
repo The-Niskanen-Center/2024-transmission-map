@@ -1,0 +1,25 @@
+{
+  "project": {
+    "name": "2024-niskanen-energy",
+    "slug": "2024-niskanen-energy"
+  },
+  "s3": {
+    "bucket": "",
+    "folder": "2024-niskanen-energy"
+  },
+  "google": {
+    "doc": [
+      {
+        "id": "",
+        "filepath": "src/data/copy.json"
+      }
+    ],
+    "sheet": [
+      {
+        "id": "",
+        "gid": "",
+        "filepath": ""
+      }
+    ]
+  }
+}
