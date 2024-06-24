@@ -1,6 +1,7 @@
 <script>
   import Window from "./components/Window.svelte";
   import Map from "./components/Map.svelte";
+  import Summary from "./components/Summary.svelte";
   import Table from "./components/Table.svelte";
 
   // Handle responsive iframes for embeds
@@ -43,6 +44,7 @@
 
   <div id="g-viz">
     <Map bind:activeLine />
+    <Summary {activeLine}/>
     <Table bind:activeLine />
   </div>
 
