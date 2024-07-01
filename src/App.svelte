@@ -3,6 +3,10 @@
   import Map from "./components/Map.svelte";
   import Summary from "./components/Summary.svelte";
   import Table from "./components/Table.svelte";
+  import Controls from "./components/Controls.svelte";
+
+
+  import data from "./data/data.json";
 
   // Handle responsive iframes for embeds
   import pym from "pym.js";
@@ -19,13 +23,14 @@
   let includeCredit = getUrlParameter("credit") != "false";
 
   let activeLine;
+  let activeLayer;
 
   function reset() {
     overlayInfo = undefined;
     marker.remove();
   }
 
-  $: console.log(activeLine)
+  $: console.log(activeLine);
 </script>
 
 <Window />
@@ -43,9 +48,12 @@
   <p class="sr-only"></p>
 
   <div id="g-viz">
-    <Map bind:activeLine />
-    <Summary {activeLine}/>
-    <Table bind:activeLine />
+    <Controls bind:activeLayer bind:activeLine lines={data}/>
+
+
+    <Map bind:activeLine {activeLayer} />
+    <Summary {activeLine} />
+    <Table bind:activeLine {data} />
   </div>
 
   {#if includeCredit}

@@ -1,10 +1,9 @@
 <script>
   import { onMount } from "svelte";
-  import data from "../data/data.json";
-  import Select from "svelte-select";
-  import { Search } from "lucide-svelte";
+
   import { afterUpdate } from "svelte";
 
+  export let data;
   export let activeLine = undefined;
 
   let columns = [];
@@ -28,7 +27,11 @@
     if (activeLine !== undefined) {
       const activeRow = document.querySelector(`tr.active`);
       if (activeRow) {
-        activeRow.scrollIntoView({ behavior: "smooth", block: "center" });
+        activeRow.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+          inline: "start",
+        });
       }
     }
   });
@@ -37,18 +40,6 @@
     activeLine == val ? (activeLine = undefined) : (activeLine = val);
   }
 </script>
-
-<div class="controls">
-  <Select
-    bind:justValue={activeLine}
-    items={data.map((d) => d.Name)}
-    placeholder="Search all projects"
-  >
-    <div slot="prepend">
-      <Search size="16" color="#7B8792" />
-    </div>
-  </Select>
-</div>
 
 <div class="g-instructions">Scroll right →</div>
 
@@ -80,8 +71,14 @@
 <style lang="scss">
   .table-container {
     overflow: auto;
-    border-radius: 10px;
+    // border-radius: 10px;
     height: 500px;
+
+    thead {
+      position: sticky;
+      top: 0px;
+      z-index: 1000;
+    }
   }
 
   .g-instructions {
@@ -102,13 +99,8 @@
     border-bottom: 1px solid #ddd;
     padding: 8px;
     text-align: left;
-    // text-align: right;
     white-space: nowrap;
     font-size: 14px;
-
-    // &:first-of-type {
-    //   text-align: left;
-    // }
   }
 
   td[data-column="name"] {
@@ -134,10 +126,6 @@
   th {
     background-color: #1d515e;
     color: white;
-  }
-
-  .controls {
-    margin-bottom: 1rem;
   }
 
   :global {

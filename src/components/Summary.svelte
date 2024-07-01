@@ -37,7 +37,13 @@
       {#each summaryMetrics as metric}
         <div class="g-summary__block">
           <span>{metric.label || metric.value}</span>
-          <div>{formatValue(activeLineData[metric.value])}{metric.suffix}</div>
+
+          <div>
+            {formatValue(activeLineData[metric.value])}
+            {#if activeLineData[metric.value] != "-"}
+              {metric.suffix}
+            {/if}
+          </div>
         </div>
       {/each}
     </div>
