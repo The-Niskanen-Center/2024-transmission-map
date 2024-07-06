@@ -39,7 +39,26 @@
   function handleClick(val) {
     activeLine == val ? (activeLine = undefined) : (activeLine = val);
   }
+
+  // let asteriskColumns = ["Lead Federal Agency"];
+  // let daggerColumns = [
+  //   "Year Federal EIS Issued",
+  //   "Date last ROD published",
+  //   "Time in Days (NOI to last ROD)",
+  //   "Time in Years (NOI to last ROD)",
+  //   "Status of NEPA review",
+  //   "Energized?",
+  // ];
 </script>
+
+<!-- <p class="credit">
+  All data is current through March 2024. A more nuanced picture of some data
+  entries, such as Lead Federal Agency and Line Voltage, can be found in the
+  original data sources linked in Table A of our <a
+    href="https://www.niskanencenter.org/contextualizing-electric-transmission-permitting-data-from-2010-to-2020/"
+    target="_blank">data report</a
+  >.
+</p> -->
 
 <div class="g-instructions">Scroll right →</div>
 
@@ -111,7 +130,7 @@
   }
 
   tr:hover {
-    // background-color: #ffffcc;
+    background-color: #eee;
     cursor: pointer;
   }
 

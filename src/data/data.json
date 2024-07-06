@@ -99,7 +99,7 @@
     "Year Federal EIS Issued": 2018,
     "Date last ROD published": "06/14/2019",
     "Time in Days (NOI to last ROD)": 2762,
-    "Time in Years (NOI to last ROD)": 7.567123288,
+    "Time in Years (NOI to last ROD)": 7.6,
     "Status of NEPA review": "Complete",
     "Energized?": "In progress",
     "NEPA Trigger": "Crosses Federal lands"
@@ -186,7 +186,7 @@
     "Time in Years (NOI to last ROD)": "-",
     "Status of NEPA review": "Underway",
     "Energized?": "Pending",
-    "NEPA Trigger": "Endangered Specia Act"
+    "NEPA Trigger": "Endangered Species Act"
   },
   {
     "Mapped": "FALSE",

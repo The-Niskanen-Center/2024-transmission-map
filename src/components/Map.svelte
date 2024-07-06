@@ -28,6 +28,7 @@
     resize();
     window.addEventListener("resize", resize);
     drawMap();
+    setTimeout(setTippy, 1000);
   });
 
   function resize() {
@@ -44,7 +45,7 @@
 
     path = geoPath().projection(projection);
 
-    setTimeout(setTippy, 1000);
+
   }
 
   $: if (width) {

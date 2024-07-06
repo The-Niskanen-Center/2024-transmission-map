@@ -10,6 +10,7 @@
   font-weight: 700;
   color: $color-body-text;
   margin-bottom: rems(10);
+  -webkit-font-smoothing: antialiased;
 }
 
 /* Chart description or legend units */
@@ -21,6 +22,7 @@
   letter-spacing: .3px;
   color: $color-body-text;
   margin-bottom: rems(20);
+  -webkit-font-smoothing: antialiased;
   a {
     color:$color-body-text;
   }
@@ -33,7 +35,7 @@
   color: $color-body-text-light;
   margin-top: rems(5);
   margin-bottom: rems(20);
-  text-align: right;
+  // text-align: right;
 
   a {
     color: $color-body-text-light;
