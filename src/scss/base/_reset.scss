@@ -9,7 +9,7 @@ menu,
 pre,
 sub,
 summary,
-sup,
+// sup,
 table,
 tbody,
 td,
@@ -79,14 +79,13 @@ iframe {
 }
 
 small,
-sub,
-sup {
+sub {
   font-size: 16px;
 }
 
-sup {
-  top: -0.5rem;
-}
+// sup {
+//   top: -0.5rem;
+// }
 
 sub {
   bottom: -0.25rem;

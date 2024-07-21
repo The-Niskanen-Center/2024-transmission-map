@@ -11,10 +11,10 @@
     { value: "districts", label: "118th Congressional districts" },
     {
       value: "solar",
-      label: "Solar power",
-      group: "Potential energy resources",
+      label: "Solar resource",
+      group: "Clean energy examples",
     },
-    { value: "wind", label: "Wind power", group: "Potential energy resources" },
+    { value: "wind", label: "Wind resource", group: "Clean energy examples" },
   ];
 
   let controlsWidth;

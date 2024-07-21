@@ -27,6 +27,8 @@
     }
     return value;
   }
+
+
 </script>
 
 {#if activeLineData}
@@ -34,8 +36,11 @@
     <h2>{activeLine}</h2>
 
     <div class="g-summary__blocks">
-      {#each summaryMetrics as metric}
-        <div class="g-summary__block">
+      {#each summaryMetrics as metric, i}
+        <div
+          class="g-summary__block"
+          class:last={summaryMetrics.length - 1 == i}
+        >
           <span>{metric.label || metric.value}</span>
 
           <div>
@@ -63,6 +68,10 @@
       display: grid;
       gap: 0.5rem;
       grid-template-columns: repeat(3, 1fr);
+
+      @include mq("600px", "max-width") {
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
 
     &__block {
@@ -70,9 +79,12 @@
       flex-direction: column;
       gap: 0.25rem;
 
+      &.last {
+        grid-column: 2 span;
+      }
+
       span {
-        font-size: 0.9rem;
-        // white-space: nowrap;
+        font-size: 1rem;
       }
       div {
         font-weight: bold;

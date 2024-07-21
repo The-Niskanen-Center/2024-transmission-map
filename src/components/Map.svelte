@@ -10,6 +10,7 @@
   import states from "../data/states.json";
   import lines from "../data/lines.json";
   import topology from "../data/districts.json";
+  import districtsDict from "../data/districts-dict.json";
 
   import Legend from "./Legend.svelte";
 
@@ -19,8 +20,6 @@
   let width;
   let height;
   let path;
-
-  let fillAccessor = "PARTY";
 
   export let activeLayer;
 
@@ -44,8 +43,6 @@
       .translate([width / 2, height / 2]);
 
     path = geoPath().projection(projection);
-
-
   }
 
   $: if (width) {
@@ -80,10 +77,12 @@
       return "#7498F6";
     } else if (party == "Republican") {
       return "#F0694D";
+    } else if (party == "Vacant") {
+      return "#ddd";
     } else if (party == "Independent") {
       return "#B1A3CC";
     } else {
-      return "#ddd";
+      return "#fff";
     }
   }
 
@@ -96,38 +95,79 @@
     });
   }
 
+  let districtValues = ["Democrat", "Republican", "Vacant"];
+  let districtColors = ["#7498F6", "#F0694D", "#ddd"];
+
   const windColors = [
-    "#091D58", // ≥ 10
-    "#263595", // 9.0 to 9.9
-    "#235FA8", // 8.0 to 8.9
-    "#3A91C0", // 7.0 to 7.9
-    "#4BB7C5", // 6.0 to 6.9
-    "#80CDBB", // 5.0 to 5.9
-    "#C7EAB4", // 4.0 to 4.9
-    "#EDF8DA", // 3.0 to 3.9
-    "#FFFFD9", // < 3.0
+    "#FFFFD9",
+    "#EDF8DA",
+    "#C7EAB4",
+    "#80CDBB",
+    "#4BB7C5",
+    "#3A91C0",
+    "#263595",
+    "#091D58",
   ];
 
-  const windValues = [
-    "≥ 10",
-    "9.0 to 9.9",
-    "8.0 to 8.9",
-    "7.0 to 7.9",
-    "6.0 to 6.9",
-    "5.0 to 5.9",
-    "4.0 to 4.9",
-    "3.0 to 3.9",
-    "< 3.0",
+  const windValues = ["< 3.0", "4", "5", "6", "7", "8", "9", "≥ 10"];
+
+
+  const solarColors = [
+    "#FFFFCE",
+    "#FCEDA1",
+    "#FADA76",
+    "#F5B24C",
+    "#F28D3D",
+    "#EF4D2B",
+    "#E4201B",
+    "#BD1825",
   ];
+
+  const solarValues = ["< 4", "4.25", "4.5", "4.75", "5", "5.25", "5.5", "≥ 5.75"];
 </script>
 
-<Legend
-  values={lineCategories}
-  colors={lineColors}
-  title="Voltage range of line"
-  suffix="kv"
-  layout="center"
-/>
+<div class="legends">
+  <Legend
+    values={lineCategories}
+    colors={lineColors}
+    type="groups"
+    title="Voltage range of line"
+    suffix="kv"
+    layout="center"
+  />
+
+  {#if activeLayer == "districts"}
+    <Legend
+      values={districtValues}
+      colors={districtColors}
+      title="118th Congressional district control"
+      layout="center"
+      type="groups"
+    />
+  {/if}
+
+  {#if activeLayer == "wind"}
+    <Legend
+      values={windValues}
+      colors={windColors}
+      title="Annual average wind speed at 80 meters above surface level"
+      subtitle="Wind speed (meter/second)"
+      layout="center"
+      type="gradient"
+    />
+  {/if}
+
+  {#if activeLayer == "solar"}
+    <Legend
+      values={solarValues}
+      colors={solarColors}
+      title="Global Horizontal Irradiance"
+      subtitle="kWh/m<sup>2</sup>/Day"
+      layout="center"
+      type="gradient"
+    />
+  {/if}
+</div>
 
 <div class="g-map">
   <svg
@@ -156,7 +196,9 @@
             <path
               class="district"
               d={path(feature)}
-              style:--fill={getPartyColor(feature.properties[fillAccessor])}
+              style:--fill={getPartyColor(
+                districtsDict[feature.properties.DISTRICTID]
+              )}
             ></path>
           {/each}
         {/if}
@@ -193,20 +235,6 @@
       </g>
     {/if}
   </svg>
-
-  {#if activeLayer == "wind"}
-    <!-- <div class="g-floating-legend">
-      <Legend
-        values={windValues}
-        colors={windColors}
-        title="Wind speed"
-        suffix=""
-        layout="center"
-        direction="column"
-        type="ruler"
-      />
-    </div> -->
-  {/if}
 </div>
 
 <style lang="scss">
@@ -230,19 +258,19 @@
         fill: var(--fill);
         stroke: #fff;
         stroke-width: 0.5;
-        opacity: 0.5;
+        opacity: 0.9;
       }
 
       .line-halo {
         stroke: transparent;
         stroke-width: 7px;
         cursor: pointer;
-        opacity: 0.25;
+        opacity: 0.75;
         stroke: black;
 
         &:hover {
           stroke: black;
-          opacity: 0.5;
+          opacity: 1;
         }
 
         &.active {
@@ -263,21 +291,17 @@
     image.layer {
       opacity: 1;
     }
-
-    .g-floating-legend {
-      position: absolute;
-      bottom: 0px;
-      right: 0px;
-      background: white;
-      padding: 0.5rem;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-    }
   }
 
   :global {
     .tippy-box {
       font-weight: bold;
     }
+  }
+
+  .legends {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
   }
 </style>

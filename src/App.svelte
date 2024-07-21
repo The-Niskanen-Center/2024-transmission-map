@@ -48,11 +48,19 @@
       href="https://www.niskanencenter.org/contextualizing-electric-transmission-permitting-data-from-2010-to-2020/"
       target="_blank">data</a
     >
-    report and <a
+    report and
+    <a
       href="https://www.niskanencenter.org/evidence-based-recommendations-for-overcoming-barriers-to-federal-transmission-permitting/"
       target="_blank">full set of recommendations</a
     > for overcoming barriers to federal transmission permitting, helps to better
     inform policy debates about this critical topic.
+  </p>
+
+  <p class="dek">
+    In addition to the data from our report, the map below provides several data
+    layers from external sources. The layers can help preliminary exploration of
+    how these transmission infrastructure projects align with some example
+    jurisdictional boundaries and energy resource potentials.
   </p>
 
   <p class="sr-only"></p>
@@ -65,28 +73,29 @@
     <Table bind:activeLine {data} />
   </div>
 
+  <p class="credit">
+    Note: Note: All data is current through March 2024. Three additional lines
+    were added to the dataset since the report publication. All data is current
+    through March 2024. A more nuanced picture of some data entries, such as
+    Lead Federal Agency and Line Voltage, can be found in the original data
+    sources linked in Table A of our <a
+      href="https://www.niskanencenter.org/contextualizing-electric-transmission-permitting-data-from-2010-to-2020/"
+      target="_blank">data report</a
+    >.
+  </p>
 
-    <p class="credit">
-      Note: All data is current through March 2024. A more nuanced picture of
-      some data entries, such as Lead Federal Agency and Line Voltage, can be
-      found in the original data sources linked in Table A of our <a
-        href="https://www.niskanencenter.org/contextualizing-electric-transmission-permitting-data-from-2010-to-2020/"
-        target="_blank">data report</a
-      >. Data: Niskanen Center and Clean Air Task Force; Solar and wind energy potential data from <a href="https://www.nrel.gov/gis/wind-resource-maps.html">NREL</a>; Credit: Niskanen Center
-    </p>
-
+  <p class="credit">
+    Data: Niskanen Center and Clean Air Task Force; Solar and wind energy
+    resource data from <a href="https://www.nrel.gov/gis/">NREL</a>; Credit:
+    Niskanen Center
+  </p>
 </div>
 
 <style lang="scss">
   .chart-container {
-    max-width: 800px;
+    // max-width: 800px;
     width: 100%;
     padding: 1rem;
-  }
-
-  :root {
-    --color-likely: #7fb6d9;
-    --color-potentially: #dda3fa;
   }
 
   #g-viz {
@@ -111,25 +120,6 @@
         transform: translateY(-50%);
         border: 1px solid;
         border-radius: 100%;
-      }
-
-      &.unlikely {
-        &::after {
-          background: #fff;
-          border-color: #999;
-        }
-      }
-      &.potentially {
-        &::after {
-          background: var(--color-potentially);
-          border-color: var(--color-potentially);
-        }
-      }
-      &.likely {
-        &::after {
-          background: var(--color-likely);
-          border-color: var(--color-likely);
-        }
       }
     }
   }
