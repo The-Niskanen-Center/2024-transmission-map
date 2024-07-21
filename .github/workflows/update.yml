@@ -1,0 +1,39 @@
+name: Download and Commit Districts
+
+on:
+  schedule:
+    - cron: '0 0 * * MON'
+  workflow_dispatch:
+
+jobs:
+  download_and_commit:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '14' # Adjust the Node.js version as needed
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run download-districts script
+        run: ./scripts/download-districts
+
+      - name: Check for changes
+        id: git_diff
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git diff-index --quiet HEAD || echo "Changes detected"
+
+      - name: Commit changes
+        if: steps.git_diff.outputs.result != '0'
+        run: |
+          git commit -m 'Update districts data'
+          git push
