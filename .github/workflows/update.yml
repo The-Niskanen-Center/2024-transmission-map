@@ -22,7 +22,7 @@ jobs:
         run: npm install
 
       - name: Run download-districts script
-        run: ./scripts/download-districts
+        run: node ./scripts/download-districts.cjs
 
       - name: Check for changes
         id: git_diff
