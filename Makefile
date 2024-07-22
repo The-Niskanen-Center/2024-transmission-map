@@ -1,7 +1,6 @@
 PHONY: github jaredwhalen
 
 github:
-	# npm run fallbacks
 	npm run build
 	rm -rf docs
 	cp -r dist docs
