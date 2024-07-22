@@ -33,7 +33,7 @@ jobs:
           git diff-index --quiet HEAD || echo "Changes detected"
 
       - name: Commit changes
-        if: steps.git_diff.outputs.result != '0'
+        # if: steps.git_diff.outputs.result != '0'
         run: |
           git commit -m 'Update districts data'
           git push
