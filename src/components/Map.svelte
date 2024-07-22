@@ -101,16 +101,16 @@
   const windColors = [
     "#FFFFD9",
     "#EDF8DA",
-    "#C7EAB4",
+    "#C6E9B3",
     "#80CDBB",
     "#4BB7C5",
     "#3A91C0",
+    "#235FA8",
     "#263595",
     "#091D58",
   ];
 
-  const windValues = ["< 3", "4", "5", "6", "7", "8", "9", "≥ 10"];
-
+  const windValues = ["≥3", "4", "5", "6", "7", "8", "9", "≥10"];
 
   const solarColors = [
     "#FFFFCE",
@@ -121,9 +121,19 @@
     "#EF4D2B",
     "#E4201B",
     "#BD1825",
+    "#810C26",
   ];
 
-  const solarValues = ["< 4", "4.25", "4.5", "4.75", "5", "5.25", "5.5", "≥ 5.75"];
+  const solarValues = [
+    "≤4",
+    "4.25",
+    "4.5",
+    "4.75",
+    "5",
+    "5.25",
+    "5.5",
+    "≥5.75",
+  ];
 </script>
 
 <div class="legends">
@@ -140,7 +150,7 @@
     <Legend
       values={districtValues}
       colors={districtColors}
-      title="118th Congressional district control"
+      title="Political representation of U.S. congressional districts"
       layout="center"
       type="groups"
     />
@@ -153,7 +163,7 @@
       title="Annual average wind speed at 80 meters above surface level"
       subtitle="Wind speed (meter/second)"
       layout="center"
-      type="gradient"
+      type="ruler"
     />
   {/if}
 
@@ -161,10 +171,10 @@
     <Legend
       values={solarValues}
       colors={solarColors}
-      title="Global Horizontal Irradiance"
+      title="Annual average daily total solar resources"
       subtitle="kWh/m<sup>2</sup>/Day"
       layout="center"
-      type="gradient"
+      type="ruler"
     />
   {/if}
 </div>
@@ -240,6 +250,8 @@
 <style lang="scss">
   .g-map {
     position: relative;
+  
+
     svg {
       width: 100%;
       height: auto;

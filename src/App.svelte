@@ -74,20 +74,28 @@
   </div>
 
   <p class="credit">
-    Note: Note: All data is current through March 2024. Three additional lines
-    were added to the dataset since the report publication. All data is current
-    through March 2024. A more nuanced picture of some data entries, such as
-    Lead Federal Agency and Line Voltage, can be found in the original data
-    sources linked in Table A of our <a
+    Note: Transmission line data is current through March 2024. Three additional
+    lines were added to the dataset since publication of the <a
       href="https://www.niskanencenter.org/contextualizing-electric-transmission-permitting-data-from-2010-to-2020/"
-      target="_blank">data report</a
+      target="_blank">original data report</a
+    >
+    that month. A more nuanced picture of some of the included categories, such
+    as Lead Federal Agency and Line Voltage, can be found in the original data
+    sources linked in Table A of the same
+    <a
+      href="https://www.niskanencenter.org/contextualizing-electric-transmission-permitting-data-from-2010-to-2020/"
+      target="_blank">report</a
     >.
   </p>
 
   <p class="credit">
     Data: Niskanen Center and Clean Air Task Force; Solar and wind energy
-    resource data from <a href="https://www.nrel.gov/gis/">NREL</a>; Credit:
-    Niskanen Center
+    resource data courtesy of <a href="https://www.nrel.gov/gis/">NREL</a>;
+    Congressional district data courtesy of
+    <a
+      href="https://www.arcgis.com/home/item.html?id=9ffc6dc695374b169eadb5f1f6149c2a"
+      target="_blank">Esri</a
+    >; Credit: Niskanen Center
   </p>
 </div>
 

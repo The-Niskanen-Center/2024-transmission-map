@@ -8,7 +8,7 @@
   export let activeLayer;
 
   let layers = [
-    { value: "districts", label: "118th Congressional districts" },
+    { value: "districts", label: "Political representation of U.S. congressional districts" },
     {
       value: "solar",
       label: "Solar resource",

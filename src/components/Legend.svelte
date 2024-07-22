@@ -8,6 +8,7 @@
   export let type;
   export let layout = "left";
   export let direction = "row";
+  export let minValue = undefined;
 
   let legendItems = values.map((category, index) => ({
     category,
@@ -47,12 +48,38 @@
         </div>
       </div>
     </div>
+  {:else if type == "ruler"}
+    <div class="g-legend__ruler">
+      {#if minValue}
+        <div class="g-legend__ruler-tick">
+          <div class="g-legend__ruler-label">{minValue}</div>
+        </div>
+      {/if}
+      {#each values as value, index}
+        <div class="g-legend__ruler-item">
+          <div
+            class="g-legend__ruler-bar"
+            style="background-color: {colors[index]};"
+          ></div>
+          <div class="g-legend__ruler-tick">
+            <div class="g-legend__ruler-label">{value}</div>
+          </div>
+        </div>
+      {/each}
+      <div class="g-legend__ruler-item">
+        <div
+          class="g-legend__ruler-bar"
+          style="background-color: {colors[colors.length - 1]};"
+        ></div>
+      </div>
+    </div>
   {/if}
 </div>
 
 <style lang="scss">
   .g-legend {
     margin: 0.25rem 0;
+    filter: drop-shadow(0px 0px 5px #ccc);
 
     &.center {
       text-align: center;
@@ -138,6 +165,40 @@
       color: rgb(101, 101, 104);
       font-size: 12px;
       white-space: nowrap;
+    }
+
+    &__ruler {
+      display: flex;
+      justify-content: center;
+      @include mq("600px", "max-width") {
+        margin-bottom: 15px;
+      }
+    }
+
+    &__ruler-item {
+      display: flex;
+      align-items: start;
+    }
+
+    &__ruler-tick {
+      width: 1px;
+      height: 20px;
+      background-color: #999;
+      position: relative;
+    }
+
+    &__ruler-label {
+      position: absolute;
+      top: 27px;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: rgb(101, 101, 104);
+      font-size: 12px;
+    }
+
+    &__ruler-bar {
+      width: 35px;
+      height: 14px;
     }
   }
 </style>
