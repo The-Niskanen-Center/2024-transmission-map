@@ -5,6 +5,10 @@ on:
     - cron: '0 0 * * MON'
   workflow_dispatch:
 
+permissions:
+  contents: write
+  actions: write
+
 jobs:
   download_and_commit:
     runs-on: ubuntu-latest
@@ -31,9 +35,13 @@ jobs:
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
           git add -A
           git diff-index --quiet HEAD || echo "Changes detected"
-        continue-on-error: true
-
-      - name: Commit changes
+        
+      - name: Commit and push changes
         run: |
-          git commit -m 'Update districts data'
-          git push https://x-access-token:${{ secrets.GH_PAT }}@github.com/jaredwhalen/2024-niskanen-energy.git HEAD:main
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add .
+          git commit -m 'Automated data fetch and commit'
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
