@@ -19,17 +19,11 @@
     return params.get(name);
   }
 
-  let includeCredit = getUrlParameter("credit") != "false";
 
   let activeLine;
   let activeLayer;
 
-  function reset() {
-    overlayInfo = undefined;
-    marker.remove();
-  }
 
-  $: console.log(activeLine);
 </script>
 
 <Window />
